@@ -106,15 +106,14 @@
       
       
       xhr = new XMLHttpRequest();
-      xhr.open('GET', 'https://data.nasa.gov/resource/y77d-th95.json?$$app_token=zKEFjB7NwyfRK8m56Thgz9QiQ', true);
+      xhr.open('GET', 'meteorites.json', true);
       xhr.onreadystatechange = function(e) {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             var data = JSON.parse(xhr.responseText);
             window.data = data;
             for (i=0;i<data.length;i++) {
-              var arr = [data[i][7], data[i][8], data[i][3]];
-              globe.addData(data[i][4], {format: 'magnitude', name: arr, animated: true});
+              globe.addData(data[i][0], {format: 'magnitude', name: data[i][1], animated: true});
             }
             globe.createPoints();
             settime(globe,0)();
